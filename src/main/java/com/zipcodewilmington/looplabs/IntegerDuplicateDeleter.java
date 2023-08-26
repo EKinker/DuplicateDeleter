@@ -10,10 +10,10 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
         super(intArray);
     }
 
-    public int countOccurences(Integer value) {
+    public int countOccurrences(Integer value) {
         int count = 0;
-        for(Integer i : array){
-            if(i==value) count++;
+        for (Integer i : array) {
+            if (i.equals(value)) count++;
         }
         return count;
     }
@@ -21,38 +21,36 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
         int newArraySize = 0;
-        for(Integer i : array){
-            if(countOccurences(i)<maxNumberOfDuplications) newArraySize++;
+        for (Integer i : array) {
+            if (countOccurrences(i) < maxNumberOfDuplications) newArraySize++;
         }
         Integer[] newArray = new Integer[newArraySize];
 
         int newIndex = 0;
-        for(Integer i : array){
-            if(countOccurences(i)<maxNumberOfDuplications){
-                newArray[newIndex]=i;
+        for (Integer i : array) {
+            if (countOccurrences(i) < maxNumberOfDuplications) {
+                newArray[newIndex] = i;
                 newIndex++;
             }
         }
-
         return newArray;
     }
 
     @Override
     public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
         int newArraySize = 0;
-        for(Integer i : array){
-            if(countOccurences(i)!=exactNumberOfDuplications) newArraySize++;
+        for (Integer i : array) {
+            if (countOccurrences(i) != exactNumberOfDuplications) newArraySize++;
         }
         Integer[] newArray = new Integer[newArraySize];
 
         int newIndex = 0;
-        for(Integer i : array){
-            if(countOccurences(i)!=exactNumberOfDuplications){
-                newArray[newIndex]=i;
+        for (Integer i : array) {
+            if (countOccurrences(i) != exactNumberOfDuplications) {
+                newArray[newIndex] = i;
                 newIndex++;
             }
         }
-
         return newArray;
     }
 }

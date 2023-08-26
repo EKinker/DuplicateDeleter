@@ -9,13 +9,46 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
         super(intArray);
     }
 
+    public int countOccurrences(String string) {
+        int count = 0;
+        for (String s : array) {
+            if (s.equals(string)) count++;
+        }
+        return count;
+    }
     @Override
     public String[] removeDuplicates(int maxNumberOfDuplications) {
-        return new String[0];
+        int newArraySize = 0;
+        for (String s : array) {
+            if (countOccurrences(s) < maxNumberOfDuplications) newArraySize++;
+        }
+        String[] newArray = new String[newArraySize];
+
+        int newIndex = 0;
+        for (String s : array) {
+            if (countOccurrences(s) < maxNumberOfDuplications) {
+                newArray[newIndex] = s;
+                newIndex++;
+            }
+        }
+        return newArray;
     }
 
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new String[0];
+        int newArraySize = 0;
+        for (String s : array) {
+            if (countOccurrences(s) != exactNumberOfDuplications) newArraySize++;
+        }
+        String[] newArray = new String[newArraySize];
+
+        int newIndex = 0;
+        for (String s : array) {
+            if (countOccurrences(s) != exactNumberOfDuplications) {
+                newArray[newIndex] = s;
+                newIndex++;
+            }
+        }
+        return newArray;
     }
 }
